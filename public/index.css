@@ -1,0 +1,180 @@
+.shimmer {
+  height: 250px;
+  width: 250px;
+  background-color: darkgray;
+  margin: 10px;
+}
+
+.label {
+  display: block;
+  margin: 10px;
+}
+
+#input-container {
+  border: 2px solid gray;
+  width: 30%;
+  padding: 10px 20px;
+}
+
+.slider-container {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  margin-top: 20px;
+}
+
+.slider {
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+}
+
+.btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 18px;
+}
+
+.btn:active {
+  transform: scale(1.1);
+}
+
+.btn-prev {
+  top: 85%;
+  left: 2%;
+}
+
+.btn-next {
+  top: 85%;
+  right: 5%;
+}
+
+.slide-content {
+  display: flex;
+  position: relative;
+}
+
+.content {
+  width: 600px;
+  height: 300px;
+  position: absolute;
+  transition: all 2s;
+}
+
+.content1 {
+  background-color: red;
+}
+
+.content2 {
+  background-color: blue;
+}
+
+.flip-container {
+  width: 400px;
+  height: 600px;
+  background-color: rgb(1, 32, 1);
+  margin: 400px 40px;
+}
+
+.card {
+  width: 80%;
+  height: 50%;
+  background-color: orange;
+  margin: 0 auto;
+  margin-top: 30px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 8s ease;
+  color: #fff;
+}
+
+.front-card {
+  width: 50%;
+  height: 50%;
+  background-color: rgb(83, 1, 1);
+  margin: 0 auto;
+  margin-top: 30px;
+  position: absolute;
+  left: 10px;
+  backface-visibility: hidden;
+}
+
+.back-card {
+  width: 50%;
+  height: 50%;
+  background-color: rgb(36, 1, 28);
+  margin: 0 auto;
+  margin-top: 30px;
+  position: absolute;
+  left: 10px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.rotate {
+  transform: rotateY(180deg);
+}
+
+.flip-container-2 {
+  height: 500px;
+  width: 500px;
+  background-color: rgb(10, 15, 10);
+  margin: 20px auto;
+}
+
+.board {
+  position: relative;
+  width: 80%;
+  height: 50%;
+  background-color: beige;
+  margin: 10px auto;
+  transform-style: preserve-3d;
+  transition: all 5s ease;
+  color: white;
+}
+
+.front-board {
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  background-color: rgb(37, 4, 70);
+  margin: 10px auto;
+  top: 10px;
+  left: 30px;
+  backface-visibility: hidden;
+}
+
+.back-board {
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  background-color: rgb(70, 17, 2);
+  margin: 10px auto;
+  top: 10px;
+  left: 30px;
+
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}

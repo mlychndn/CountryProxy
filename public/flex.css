@@ -1,0 +1,11 @@
+.flex-container {
+  display: flex;
+}
+
+.flex-card {
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  background-color: aqua;
+  min-width: 150px;
+}
