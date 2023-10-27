@@ -1,11 +1,11 @@
-const express = require("express");
+const express = require('express');
 const {
   tokenVerification,
   downloadPdf,
-} = require("../controllers/pdfController");
+} = require('../controllers/pdfController');
 
 const router = express.Router();
 
-router.route("/").get(tokenVerification, downloadPdf);
+router.route('/').get(downloadPdf);
 
 module.exports = router;
