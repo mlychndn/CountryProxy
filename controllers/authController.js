@@ -3,11 +3,27 @@ const jwt = require('jsonwebtoken');
 const sendEmail = require('../utils/sendEmail');
 const util = require('util');
 const crypto = require('crypto');
-const getToken = (id) => {
+const getToken = (id, status, res, data) => {
   const token = jwt.sign({ id }, process.env.SECRET, {
     expiresIn: process.env.EXPIRED,
   });
-  return token;
+
+  res.cookie('jwt', token, {
+    expires: Date.now * 90 * 24 * 60 * 60 * 1000,
+    secure: true,
+    httpOnly: true,
+  });
+  res.status(201).json({ status, data, token });
+};
+
+const filterRequestBody = (requestObject, ...filterArray) => {
+  let obj = {};
+  Object.keys(requestObject).forEach((key) => {
+    if (filterArray.includes(key)) {
+      obj[key] = requestObject[key];
+    }
+  });
+  return obj;
 };
 
 exports.getAllUsers = async (req, res, next) => {
@@ -42,12 +58,7 @@ exports.signUp = async (req, res, next) => {
 
     const data = await user.save();
     data.password = '';
-    const token = getToken(data._id);
-    res.status(201).json({
-      status: 'Yay! user signed in',
-      data,
-      token,
-    });
+    getToken(data._id, 'Yay! user signed in', res, data);
   } catch (error) {
     res.status(401).json({
       status: error,
@@ -74,14 +85,8 @@ exports.logIn = async (req, res, next) => {
       throw new Error('Invalid user name or password');
     }
 
-    const token = getToken(user._id);
     user.password = '';
-
-    res.status(201).json({
-      status: 'User logged in',
-      user,
-      token,
-    });
+    getToken(user._id, 'User logged in', res, user);
   } catch (error) {
     res.status(401).json({
       status: 'error',
@@ -142,7 +147,7 @@ exports.restrictTo = (...roles) => {
 exports.deleteManyUesrs = async (req, res, next) => {
   try {
     const user = await Auth.deleteMany({});
-    console.log('user', user);
+
     res.status(204).json({
       status: 'success',
     });
@@ -198,11 +203,11 @@ exports.forgotPassword = async (req, res, next) => {
 exports.resetPassword = async (req, res, next) => {
   try {
     //1. get token and find user, need to again encrypt token
-    const { token } = req.params;
+    const { token: jwt } = req.params;
     const { password, passwordConfirm } = req.body;
     const encryptedToken = crypto
       .createHash('sha256')
-      .update(token)
+      .update(jwt)
       .digest('hex');
 
     const user = await Auth.findOne({
@@ -221,15 +226,10 @@ exports.resetPassword = async (req, res, next) => {
 
     await user.save();
 
-    const jwt = getToken(user._id);
     user.password = undefined;
     user.passwordConfirm = undefined;
 
-    res.status(201).json({
-      status: 'updated',
-      user,
-      token: jwt,
-    });
+    getToken(user._id, 'updated', res, user);
   } catch (error) {
     res.status(500).json({
       status: 'error',
@@ -255,13 +255,7 @@ exports.updatePassword = async (req, res, next) => {
     await user.save();
     user.password = undefined;
     user.passwordConfirm = undefined;
-    const jwt = getToken(user._id);
-
-    res.status(201).json({
-      status: 'success',
-      user,
-      token: jwt,
-    });
+    getToken(user._id, 'success', res, user);
   } catch (error) {
     res.status(400).json({
       status: 'error',
@@ -272,12 +266,40 @@ exports.updatePassword = async (req, res, next) => {
 
 exports.updateMe = async (req, res, next) => {
   try {
-    console.log(req.body);
+    const { password, passwordConfirm } = req.body;
+    if (password || passwordConfirm) {
+      throw new Error('This route is not for password update');
+    }
+    const updatedObj = filterRequestBody(req.body, 'name', 'email');
+
+    const updated = await Auth.findByIdAndUpdate(req.user._id, updatedObj, {
+      new: true,
+      runValidators: true,
+    });
+
     res.status(201).json({
       status: 'succes',
+      user: updated,
     });
   } catch (error) {
     res.status(400).json({
+      status: 'error',
+      message: error.message,
+    });
+  }
+};
+
+exports.deleteMe = async (req, res, next) => {
+  try {
+    await Auth.findByIdAndUpdate(req.user._id, {
+      active: false,
+    });
+
+    res.status(204).json({
+      status: 'success',
+    });
+  } catch (error) {
+    res.status(401).json({
       status: 'error',
       message: error.message,
     });

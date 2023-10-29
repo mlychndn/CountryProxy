@@ -47,9 +47,14 @@ const authSchema = new mongoose.Schema({
   },
   passwordResetToken: String,
   passwordResetExpires: Date,
+  active: {
+    type: Boolean,
+    default: true,
+  },
 });
 
-authSchema.pre('save', async function (next) {
+// document middleware
+authSchema.pre('save', function (next) {
   try {
     if (!this.isModified('password') || this.$isNew) return next();
 
@@ -74,6 +79,12 @@ authSchema.pre('save', async function (next) {
   }
 });
 
+// query middleware
+authSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+
+  next();
+});
 authSchema.methods.correctPassword = async function (
   inputPassword,
   originalPassword
