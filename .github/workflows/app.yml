@@ -15,7 +15,6 @@ on:
 jobs:
   deploy:
     name: Deploying to Google Cloud
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -30,5 +29,4 @@ jobs:
           project_id: cicd2-361410
 
       - name: Test
-        run:
-          - gcloud auth login
+        run: gcloud auth login
