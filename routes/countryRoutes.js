@@ -1,23 +1,23 @@
-const express = require('express');
+const express = require("express");
 const {
   getCountry,
   createCountryRecord,
   upload,
   getCountryById,
   deleteCountry,
-} = require('../controllers/countryController');
+} = require("../controllers/countryController");
 
-const { protection, restrictTo } = require('../controllers/authController');
+const { protection, restrictTo } = require("../controllers/authController");
 const router = express.Router();
 
 router
-  .route('/')
-  .get(protection, getCountry)
-  .post(upload.single('photo'), createCountryRecord);
+  .route("/")
+  .get(getCountry)
+  .post(upload.single("photo"), createCountryRecord);
 
 router
-  .route('/:id')
-  .get(protection, getCountryById)
-  .delete(protection, restrictTo('admin', 'maintainer'), deleteCountry);
+  .route("/:id")
+  .get(getCountryById)
+  .delete(protection, restrictTo("admin", "maintainer"), deleteCountry);
 
 module.exports = router;

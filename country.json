@@ -1,1 +1,94 @@
-[{"name":"Australia","continent":"Oceania","flag":"images/australia.png","rank":4,"id":1},{"name":"England","continent":"Europe","flag":"images/england.png","rank":5,"id":2},{"name":"Namibia","continent":"Africa","flag":"images/namibia.png","rank":8,"id":3},{"name":"New Zealand","continent":"Oceania","flag":"images/newzealand.png","rank":3,"id":4},{"name":"Pakistan","continent":"Asia","flag":"images/pakistan.png","rank":6,"id":5},{"name":"Zimbabwe","continent":"Africa","flag":"images/zimbabwe.png","rank":7,"id":6},{"name":"South Africa","continent":"Africa","flag":"images/southafrica.png","rank":2,"id":7},{"name":"India","continent":"Asia","flag":"images/india.png","rank":1,"id":8},{"name":"Canada","continent":"NorthAmerica","flag":"images/canada.png","rank":"72"},{"name":"Canada","continent":"NorthAmerica","flag":"images/canada.png","rank":"72"},{"name":"usa","continent":"NorthAmerica","flag":"images/usa.png","rank":"1"},{"name":"Malay","continent":"Asia","flag":"images/malay.png","rank":"16"}]
+[
+  {
+    "name": "Australia",
+    "continent": "Oceania",
+    "flag": "images/australia.png",
+    "rank": 4,
+    "id": 1
+  },
+  {
+    "name": "England",
+    "continent": "Europe",
+    "flag": "images/england.png",
+    "rank": 5,
+    "id": 2
+  },
+  {
+    "name": "Namibia",
+    "continent": "Africa",
+    "flag": "images/namibia.png",
+    "rank": 8,
+    "id": 3
+  },
+  {
+    "name": "New Zealand",
+    "continent": "Oceania",
+    "flag": "images/newzealand.png",
+    "rank": 3,
+    "id": 4
+  },
+  {
+    "name": "Pakistan",
+    "continent": "Asia",
+    "flag": "images/pakistan.png",
+    "rank": 6,
+    "id": 5
+  },
+  {
+    "name": "Zimbabwe",
+    "continent": "Africa",
+    "flag": "images/zimbabwe.png",
+    "rank": 7,
+    "id": 6
+  },
+  {
+    "name": "South Africa",
+    "continent": "Africa",
+    "flag": "images/southafrica.png",
+    "rank": 2,
+    "id": 7
+  },
+  {
+    "name": "India",
+    "continent": "Asia",
+    "flag": "images/india.png",
+    "rank": 1,
+    "id": 8
+  },
+  {
+    "name": "Canada",
+    "continent": "NorthAmerica",
+    "flag": "images/canada.png",
+    "rank": "72"
+  },
+  {
+    "name": "Canada",
+    "continent": "NorthAmerica",
+    "flag": "images/canada.png",
+    "rank": "72"
+  },
+  {
+    "name": "usa",
+    "continent": "NorthAmerica",
+    "flag": "images/usa.png",
+    "rank": "1"
+  },
+  {
+    "name": "Malay",
+    "continent": "Asia",
+    "flag": "images/malay.png",
+    "rank": "16"
+  },
+  {
+    "name": "Nambiaba",
+    "continent": "Europe",
+    "flag": "images/nambiaba.png",
+    "rank": "12"
+  },
+  {
+    "name": "Nambiaba",
+    "continent": "Europe",
+    "flag": "images/nambiaba.png",
+    "rank": "12"
+  }
+]
