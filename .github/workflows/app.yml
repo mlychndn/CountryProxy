@@ -24,3 +24,7 @@ jobs:
           deliverables: app.yaml
           version: v1
           project_id: cicd2-361410
+        run: |
+          gcloud auth login
+          gcloud config set project cicd2-361410
+          gcloud app deploy app.yaml --version v1 --no-cache
