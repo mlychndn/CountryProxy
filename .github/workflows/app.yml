@@ -27,8 +27,8 @@ jobs:
         with:
           deliverables: xyz.yaml
           version: v1
-          project_id: ${{ secrets.GCP_PROJECT }}
-          credentials: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: cicd2-361410
 
       - name: Test
-        run: curl "${{ steps.deploy.outputs.url }}"
+        run:
+          - gcloud auth login
