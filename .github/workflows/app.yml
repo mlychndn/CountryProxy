@@ -21,4 +21,4 @@ jobs:
         id: deploy
         run: |
           gcloud config set project cicd2-361410
-          gcloud app deploy app.yaml --version v1 --no-cache
+          gcloud app deploy  --version v1 --no-cache
